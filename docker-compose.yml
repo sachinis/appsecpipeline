@@ -62,7 +62,6 @@ services:
    dockerfile: Dockerfile
   networks:
    - prodnetwork
-   backend:
   ports:
    - "80:80"
   links:
@@ -73,7 +72,6 @@ services:
   environment:
    - MYSQL_ROOT_PASSWORD=p@ssw0rd
   networks:
-   - prodnetwork
-   backend:  
+   - prodnetwork  
   volumes:
    - ./database:/var/lib/mysql
