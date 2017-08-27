@@ -18,12 +18,10 @@ services:
    - /usr/local/bin/docker:/usr/bin/docker
    - /opt/jenkins/:/var/lib/jenkins/
   depends_on:
-   - nexus
    - dvwa
    - sonar
    - dvwamysql
   environment:
-   - NEXUS_PORT=8081
    - SONAR_PORT=9000
    - SONAR_DB_PORT=5432
     
