@@ -15,9 +15,7 @@ services:
    - /usr/local/bin/docker:/usr/bin/docker
    - /opt/jenkins/:/var/lib/jenkins/
   depends_on:
-   - dvwa
    - sonar
-   - dvwamysql
   environment:
    - SONAR_PORT=9000
    - SONAR_DB_PORT=5432
@@ -46,23 +44,3 @@ services:
    - POSTGRES_PASSWORD=sonar
   volumes:
    - /opt/postgres/data:/var/lib/postgresql/data
-
- dvwa:
-  build:
-   context: .
-   dockerfile: Dockerfile
-  networks:
-   - prodnetwork
-  ports:
-   - "80:80"
-  links:
-   - dvwamysql:dvwamysql
- dvwamysql:
-  image: mariadb:10.1.20
-  restart: on-failure:5
-  environment:
-   - MYSQL_ROOT_PASSWORD=p@ssw0rd
-  networks:
-   - prodnetwork  
-  volumes:
-   - ./database:/var/lib/mysql
